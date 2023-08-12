@@ -31,8 +31,12 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['sport-bike-blog-416f164a9499.herokuapp.com', 'localhost']
+# ALLOWED_HOSTS = ['sport-bike-blog-416f164a9499.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = [
+    '8000-lukagajic2-sport-bike-bl-p8fwzgeiwk.us2.codeanyapp.com', 'localhost']
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://8000-lukagajic2-sport-bike-bl-p8fwzgeiwk.us2.codeanyapp.com']
 
 # Application definition
 
