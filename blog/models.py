@@ -29,19 +29,19 @@ class BlogPost(models.Model):
 
     class Meta:
         """
-        To display blog posts in descending order
+        Displays blog posts in descending order
         """
         ordering = ['-created_on']
 
     def __str__(self):
         """
-        To return a string representation of an object
+        Returns a string representation of an object
         """
         return self.title
 
     def number_of_likes(self):
         """
-        To return total number of post likes
+        Returns total number of post likes
         """
         return self.likes.count()
 
@@ -49,6 +49,7 @@ class BlogPost(models.Model):
 
 
 class BlogComment(models.Model):
+
     """
     Database model for creating a comment
     on a blog post
