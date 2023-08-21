@@ -7,7 +7,7 @@ def about_page(request):
     """
     View for about page.
     """
-    return render(request, 'about.html')
+    return render(request, "about.html")
 
 
 # Class used from "I think therefore I blog" walkthrough.
