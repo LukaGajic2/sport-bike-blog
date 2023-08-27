@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.views import generic, View
 from .models import BlogPost
+from .forms import CommentForm
 
 
 def about_page(request):
@@ -42,6 +43,7 @@ class BlogPostPage(View):
             {
                 "post": post,
                 "comments": comments,
-                "liked": liked
-            }
+                "liked": liked,
+                "comment_form": CommentForm(),
+            },
         )
