@@ -22,40 +22,32 @@
     <div class="col-md-10 col-lg-8 col-xl-7">
       <!-- Post preview-->
       <div class="post-preview">
-        <div class="row">
-          {% for post in blogpost_list %}
-          <div class="col-md-4">
-            <div class="card mb-4">
-              <div class="card-body">
-                <div class="image-container">
-                  {% if "placeholder" in post.featured_image.url %}
-                  <img
-                    class="card-img-top"
-                    src="https://codeinstitute.s3.amazonaws.com/fullstack/blog/default.jpg"
-                  />
-                  {% else %}
-                  <img
-                    class="card-img-top"
-                    src=" {{ post.featured_image.url }}"
-                  />
-                  {% endif %}
-                  <div class="image-flash">
-                    <p class="author">Author: {{ post.author }}</p>
-                  </div>
-                </div>
-                <a href="{% url 'post' post.slug  %}" class="post-link">
-                  <h2 class="card-title">{{ post.title }}</h2>
-                  <p class="card-text">{{ post.excerpt }}</p>
-                </a>
-                <hr />
-                <p class="card-text"><i class="far fa-heart"></i> {{ post.number_of_likes }}</p>
-              </div>
-            </div>
+        {% for post in blogpost_list %}
+        <div class="image-container">
+          {% if "placeholder" in post.featured_image.url %}
+          <img
+            class="card-img-top"
+            src="https://codeinstitute.s3.amazonaws.com/fullstack/blog/default.jpg"
+          />
+          {% else %}
+          <img class="card-img-top" src=" {{ post.featured_image.url }}" />
+          {% endif %}
+          <div class="image-flash">
+            <p class="author">Author: {{ post.author }}</p>
           </div>
-
-          {% if forloop.counter|divisibleby:3 %}
         </div>
-        <div class="row">{% endif %} {% endfor %}</div>
+        <a href="{% url 'post' post.slug  %}" class="post-link">
+          <h2 class="post-title">{{ post.title }}</h2>
+          <h3 class="post-subtitle">{{ post.excerpt }}</h3>
+        </a>
+
+        <hr class="my-4" />
+        <p class="card-text">
+          <i class="far fa-heart"></i> {{ post.number_of_likes }}
+        </p>
+        <hr class="my-4" />
+        {% if forloop.counter|divisibleby:3 %}
+        <div class="post-preview">{% endif %} {% endfor %}</div>
       </div>
       <!-- Pagination code-->
       {% if is_paginated %}
