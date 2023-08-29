@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, reverse
 from django.views import generic, View
 from django.http import HttpResponseRedirect
+from django.contrib import messages
 from .models import BlogPost
 from .forms import CommentForm
 
@@ -66,6 +67,8 @@ class BlogPostPage(View):
             comment = comment_form.save(commit=False)
             comment.post = post
             comment.save()
+            messages.success(
+                request, "Please wait while we review it!.")
         else:
             comment_form = CommentForm()
 
