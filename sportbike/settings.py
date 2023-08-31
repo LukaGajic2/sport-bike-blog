@@ -34,13 +34,14 @@ DEBUG = False
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 
-ALLOWED_HOSTS = ['sport-bike-blog-416f164a9499.herokuapp.com', 'localhost']
+# ALLOWED_HOSTS = ['sport-bike-blog-416f164a9499.herokuapp.com', 'localhost']
 
-# ALLOWED_HOSTS = [
-# '8000-lukagajic2-sport-bike-bl-y8hp7w4qhy.us2.codeanyapp.com', 'localhost']
+ALLOWED_HOSTS = [
+    '8001-lukagajic2-sport-bike-bl-y8hp7w4qhy.us2.codeanyapp.com', 'localhost']
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://8000-lukagajic2-sport-bike-bl-y8hp7w4qhy.us2.codeanyapp.com']
+    'https://8001-lukagajic2-sport-bike-bl-y8hp7w4qhy.us2.codeanyapp.com']
+
 
 # Application definition
 
