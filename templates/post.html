@@ -1,28 +1,24 @@
 {% extends "base.html" %} {% block content %} {% load static %} 
 {% load crispy_forms_tags %}
 <!-- Page Header-->
-<header class="masthead">
-	<div class="d-none d-md-block col-md-6 masthead-image">
-		<!-- The featured image URL goes in the src attribute -->
-		{% if "placeholder" in post.featured_image.url %}
-		<img src="https://codeinstitute.s3.amazonaws.com/fullstack/blog/default.jpg" width="100%">
-		{% else %}
-		<img src=" {{ post.featured_image.url }}" width="100%">
-		{% endif %}
-	</div>
-</header>
-<div class="container position-relative px-4 px-lg-5">
-	<div class="row gx-4 gx-lg-5 justify-content-center">
-		<div class="col-md-10 col-lg-8 col-xl-7">
-			<div class="post-heading">
-				<h1>{{ post.title }}</h1>
-				<h2 class="subheading">
-					{{ post.author }} | {{ post.created_on }}
-				</h2>
-			</div>
-		</div>
-	</div>
-</div>
+</header class="masthead">
+    <div class="container position-relative px-4 px-lg-5">
+	    <div class="row gx-4 gx-lg-5 justify-content-center">
+            {% if "placeholder" in post.featured_image.url %}
+            <img src="https://codeinstitute.s3.amazonaws.com/fullstack/blog/default.jpg" width="100%">
+            {% else %}
+            <img src=" {{ post.featured_image.url }}" width="100%">
+            {% endif %}
+		    <div class="col-md-10 col-lg-8 col-xl-7">
+			    <div class="post-heading">
+				    <h1>{{ post.title }}</h1>
+				    <h2 class="subheading">
+					    {{ post.author }} | {{ post.created_on }}
+				    </h2>
+			    </div>
+		    </div>
+	    </div>
+    </div>
 </header>
 <!-- Post Content-->
 <article class="mb-4">
