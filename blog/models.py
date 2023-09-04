@@ -9,19 +9,33 @@ from cloudinary.models import CloudinaryField
 
 STATUS = ((0, "Draft"), (1, "Published"))
 
+BIKE_CATEGORY = (
+    ('standards', 'Standard'),
+    ('sport', 'Sport'),
+    ('sport-touring', 'Sport Touring'),
+    ('touring', 'Touring'),
+    ('cruiser', 'Cruiser'),
+    ('off-road', 'Off Road'),
+)
 
-# Model used from "I think therefore I blog" walkthrough.
+
+# Model made by help from "I think therefore I blog" walkthrough,
 class BlogPost(models.Model):
     """
     Database model for submitting a blog post
     """
     title = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
+    engine_cc = models.IntegerField(default=0, null=False, blank=False)
+    brand = models.CharField(max_length=50, null=True, blank=True)
+    model = models.CharField(max_length=50, null=True, blank=True)
+    category = models.CharField(
+        max_length=50, choices=BIKE_CATEGORY, null=False, blank=False,
+        default='standards')
     author = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='blog_posts')
     content = models.TextField()
     featured_image = CloudinaryField('image', default='placeholder')
-    excerpt = models.TextField(blank=True)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
     status = models.IntegerField(choices=STATUS, default=0)
