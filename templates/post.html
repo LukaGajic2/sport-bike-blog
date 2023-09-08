@@ -2,6 +2,12 @@
 {% load crispy_forms_tags %}
 <!-- Page Header-->
 </header class="masthead">
+    <!-- The featured image URL goes in the src attribute -->
+    {% if "placeholder" in post.featured_image.url %}
+    <img src="https://codeinstitute.s3.amazonaws.com/fullstack/blog/default.jpg" width="100%">
+    {% else %}
+    <img src=" {{ post.featured_image.url }}" width="100%">
+    {% endif %}
     <div class="container position-relative px-4 px-lg-5">
 	    <div class="row gx-4 gx-lg-5 justify-content-center">
 		    <div class="col-md-10 col-lg-8 col-xl-7">
@@ -83,6 +89,16 @@
                     </div>
                 </div>
                 <!-- Our for loop ends here -->
+                <div>
+                    {% if user.is_authenticated and comment.name == user.username %}
+                    <a href="/delete{{ comment.id }}">
+                        <button>Edit</button>
+                    </a>
+                    <a href="{{ comment.id }}">
+                        <button>Edit</button>
+                    </a>
+                    {% endif %}
+                </div>
                 {% endfor %}
             </div>
         </div>

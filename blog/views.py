@@ -106,4 +106,21 @@ class BlogPostLike(View):
             post.likes.add(request.user)
 
         return HttpResponseRedirect(reverse('post', args=[slug]))
-        
+
+
+def comment_delete(request, slug, comment_id, *args, **kwargs):
+    """
+    view to delete comment
+    """
+    queryset = Post.objects.filter(status=1)
+    post = get_object_or_404(queryset)
+    comment = post.comments.filter(id=comment_id).first()
+
+    if comment.name == request.user.username:
+        comment.delete()
+        messages.add_message(request, messages.SUCCESS, 'Comment deleted!')
+    else:
+        messages.add_message(request, messages.ERROR,
+                             'You can only delete your own comments!')
+
+    return HttpResponseRedirect(reverse('post_detail', args=[slug]))
