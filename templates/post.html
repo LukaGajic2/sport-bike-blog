@@ -91,12 +91,10 @@
                 <!-- Our for loop ends here -->
                 <div>
                     {% if user.is_authenticated and comment.name == user.username %}
-                    <a href="/delete{{ comment.id }}">
-                        <button>Edit</button>
+                    <a href="delete{{ comment.id }}">
+                        <button>Delete</button>
                     </a>
-                    <a href="{{ comment.id }}">
-                        <button>Edit</button>
-                    </a>
+                    <button>Edit</button>
                     {% endif %}
                 </div>
                 {% endfor %}

@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404, reverse
+from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.views import generic, View
 from django.http import HttpResponseRedirect
 from django.contrib import messages
@@ -14,6 +14,7 @@ def about_page(request):
 
 
 # Class used from "I think therefore I blog" walkthrough.
+
 class BlogPage(generic.ListView):
     """
     View for blog page.
@@ -25,11 +26,12 @@ class BlogPage(generic.ListView):
 
 
 # Class used from "I think therefore I blog" walkthrough.
+"""
 class BlogPostPage(View):
-    """
-    To render the individual blog post
-    as a singular web page to the browser.
-    """
+    
+    # To render the individual blog post
+    # as a singular web page to the browser.
+    
 
     def get(self, request, slug, *args, **kwargs):
         queryset = BlogPost.objects.filter(status=1)
@@ -84,20 +86,38 @@ class BlogPostPage(View):
             },
         )
 
+    def comment_delete(request, slug, comment_id, *args, **kwargs):
+        
+        # view to delete comment
+        
+        queryset = BlogPost.objects.filter(status=1)
+        post = get_object_or_404(queryset)
+        comment = post.comments.filter(id=comment_id).first()
+
+        if comment.name == request.user.username:
+            comment.delete()
+            messages.add_message(request, messages.SUCCESS, 'Comment deleted!')
+        else:
+            messages.add_message(request, messages.ERROR,
+                                 'You can only delete your own comments!')
+
+            return HttpResponseRedirect(reverse('post', args=[slug]))
+
+
 # Class used from "I think therefore I blog" walkthrough.
 
 
 class BlogPostLike(View):
-    """
-    Allow a user to like a
-    blog post submission
-    """
+    
+    # Allow a user to like a
+    # blog post submission
+    
 
     def post(self, request, slug):
-        """
-        Check for user.
-        And like/unlike a post
-        """
+        
+        # Check for user.
+        # And like/unlike a post
+        
         post = get_object_or_404(BlogPost, slug=slug)
 
         if post.likes.filter(id=request.user.id).exists():
@@ -106,21 +126,77 @@ class BlogPostLike(View):
             post.likes.add(request.user)
 
         return HttpResponseRedirect(reverse('post', args=[slug]))
+"""
 
 
-def comment_delete(request, slug, comment_id, *args, **kwargs):
+def blog_post_page(request, slug, *args, **kwargs):
     """
-    view to delete comment
-    """
-    queryset = Post.objects.filter(status=1)
-    post = get_object_or_404(queryset)
-    comment = post.comments.filter(id=comment_id).first()
+    A function-based view to view the detail of a post.
+    Largely the same as the class-based, but we don't have
+    different methods for GET and POST. Because it's not a
+    class, all of the extra "self" stuff is removed too.
 
-    if comment.name == request.user.username:
-        comment.delete()
-        messages.add_message(request, messages.SUCCESS, 'Comment deleted!')
+    Functionally, it's the same, but it is a bit clearer
+    what's going on. To differentiate between request methods,
+    we use request.method == "GET" or request.method == "POST"
+    """
+
+    queryset = BlogPost.objects.filter(status=1)
+    post = get_object_or_404(queryset, slug=slug)
+    comments = post.comments.filter(approved=True).order_by("-created_on")
+    comment_count = post.comments.filter(approved=True).count()
+    liked = False
+    commented = False
+
+    if post.likes.filter(id=request.user.id).exists():
+        liked = True
+
+    if request.method == "POST":
+        comment_form = CommentForm(data=request.POST)
+        if comment_form.is_valid():
+            comment_form.instance.email = request.user.email
+            comment_form.instance.name = request.user.username
+            comment = comment_form.save(commit=False)
+            comment.post = post
+            comment.save()
+            messages.add_message(request, messages.SUCCESS,
+                                 'Comment awaiting moderation.')
+        else:
+            comment_form = CommentForm()
     else:
-        messages.add_message(request, messages.ERROR,
-                             'You can only delete your own comments!')
+        comment_form = CommentForm()
 
-    return HttpResponseRedirect(reverse('post_detail', args=[slug]))
+    return render(
+        request,
+        "post.html",
+        {
+            "post": post,
+            "comments": comments,
+            "comment_count": comment_count,
+            "liked": liked,
+            "comment_form": comment_form
+        },
+    )
+
+
+def blog_post_like(request, slug, *args, **kwargs):
+    """
+    The view to update the likes. Although it should always be
+    called using the POST method, we have still added some
+    defensive programming to make sure.
+    """
+    post = get_object_or_404(BlogPost, slug=slug)
+
+    if request.method == "POST" and request.user.is_authenticated:
+        if post.likes.filter(id=request.user.id).exists():
+            post.likes.remove(request.user)
+        else:
+            post.likes.add(request.user)
+
+    return HttpResponseRedirect(reverse('post', args=[slug]))
+
+
+def delete_comment(request, comment_id):
+    comment = get_object_or_404(BlogPost, id=comment_id)
+    comment.delete()
+    return HttpResponseRedirect(reverse('post'))
