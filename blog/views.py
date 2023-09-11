@@ -96,3 +96,52 @@ def delete_comment(request, slug, comment_id, *args, **kwargs):
     comment = get_object_or_404(BlogComment, id=comment_id)
     comment.delete()
     return HttpResponseRedirect(reverse('post', kwargs={"slug": slug}))
+
+
+'''
+def edit_comment(request, comment_id, *args, **kwargs):
+    comment = get_object_or_404(BlogComment, id=comment_id)
+
+    if request.method == 'POST':
+        form = CommentForm(data=request.POST, instance=comment)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.approved = False
+            comment.save()
+            messages.add_message(request, messages.SUCCESS, 'Comment Updated!')
+        else:
+            messages.add_message(request, messages.ERROR,
+                                 'Error updating comment!')
+
+    return render(request, 'blog.html')
+'''
+
+
+def edit_comment(request, comment_id, *args, **kwargs):
+    comment = get_object_or_404(BlogComment, id=comment_id)
+
+    # Ensure the user can edit the comment (for example, they are the author or an admin)
+    # Remove this check if not needed.
+    if request.user != comment.author:
+        messages.add_message(request, messages.ERROR,
+                             'You do not have permission to edit this comment.')
+        # Replace 'some_view_name' with a relevant view name or URL
+        return redirect('some_view_name')
+
+    if request.method == 'POST':
+        form = CommentForm(data=request.POST, instance=comment)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.approved = False
+            comment.save()
+            messages.add_message(request, messages.SUCCESS, 'Comment Updated!')
+            # Replace 'some_view_name' with where you want to redirect after successful update
+            return redirect('some_view_name')
+        else:
+            messages.add_message(request, messages.ERROR,
+                                 'Error updating comment!')
+    else:
+        # This is a GET request, so initialize the form with the comment instance
+        form = CommentForm(instance=comment)
+
+    return render(request, 'edit_comment.html', {'form': form})

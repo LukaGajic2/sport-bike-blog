@@ -81,7 +81,7 @@
                         <span class=" text-muted font-weight-normal">
                             <!-- The comment's created date goes here -->
                             {{ comment.created_on }}
-                        </span> wrote:
+                        </span>
                     </p>
                     <!-- The body of the comment goes before the | -->
                     <div id="comment{{ comment.id }}">
@@ -95,6 +95,9 @@
                         {% csrf_token %}
                         <input type="submit" value="Delete" class="btn" />
                     </form>
+                    <a href="{% url 'edit' comment.id %}" class="post-link">
+                        <button class="btn btn-edit">Edit</button>
+                    </a>
                     {% endif %}
                 </div>
                 {% endfor %}
@@ -102,7 +105,6 @@
         </div>
         <div class="col-md-4 card mb-4  mt-3 ">
             <div class="card-body">
-                <!-- For later -->
                 {% if user.is_authenticated %}
                 
                 <h3>Leave a comment:</h3>
@@ -115,8 +117,8 @@
                 {% else %}
                 <h3>Log in to leave a comment</h3>
                 {% endif %}
-                </div>
-                </div>
-                </div>
-                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock content %}
