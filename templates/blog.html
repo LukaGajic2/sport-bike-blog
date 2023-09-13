@@ -33,12 +33,14 @@
           <img class="card-img-top" src=" {{ post.featured_image.url }}" />
           {% endif %}
           <div class="image-flash">
-            <p class="author">Author: {{ post.author }}</p>
+            <p class="author">Written by {{ post.author }}</p>
           </div>
         </div>
         <a href="{% url 'post' post.slug  %}" class="post-link">
           <h2 class="post-title">{{ post.title }}</h2>
-          <h3 class="post-subtitle">{{ post.excerpt }}</h3>
+          <h3 class="post-subtitle">
+            {{ post.engine_cc }}cc {{ post.brand }} {{ post.model }}
+          </h3>
         </a>
 
         <hr class="my-4" />

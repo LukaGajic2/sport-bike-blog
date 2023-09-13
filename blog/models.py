@@ -19,7 +19,8 @@ BIKE_CATEGORY = (
 )
 
 
-# Model made by help from "I think therefore I blog" walkthrough,
+# Model made by help from "I think therefore I blog" walkthrough
+
 class BlogPost(models.Model):
     """
     Database model for submitting a blog post
@@ -59,8 +60,8 @@ class BlogPost(models.Model):
         """
         return self.likes.count()
 
-# Model used from "I think therefore I blog" walkthrough.
 
+# Model used from "I think therefore I blog" walkthrough.
 
 class BlogComment(models.Model):
 

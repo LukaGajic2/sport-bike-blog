@@ -6,6 +6,8 @@ from .models import BlogPost, BlogComment
 from .forms import CommentForm
 
 
+# about.html page view
+
 def about_page(request):
     """
     View for about page.
@@ -24,6 +26,8 @@ class BlogPage(generic.ListView):
     template_name = 'blog.html'
     paginate_by = 6
 
+
+# view used from PP4_masterclass blog
 
 def blog_post_page(request, slug, *args, **kwargs):
     """
@@ -75,6 +79,8 @@ def blog_post_page(request, slug, *args, **kwargs):
     )
 
 
+# view used from PP4_masterclass blog
+
 def blog_post_like(request, slug, *args, **kwargs):
     """
     The view to update the likes. Although it should always be
@@ -92,16 +98,18 @@ def blog_post_like(request, slug, *args, **kwargs):
     return HttpResponseRedirect(reverse('post', args=[slug]))
 
 
+# delete comment view
+
 def delete_comment(request, slug, comment_id, *args, **kwargs):
     comment = get_object_or_404(BlogComment, id=comment_id)
     comment.delete()
     return HttpResponseRedirect(reverse('post', kwargs={"slug": slug}))
 
 
+# edit view comment
+
 def edit_comment(request, comment_id, *args, **kwargs):
     comment = get_object_or_404(BlogComment, id=comment_id)
-
-    # 1
 
     if request.method == 'POST':
         comment_form = CommentForm(data=request.POST, instance=comment)
@@ -110,13 +118,11 @@ def edit_comment(request, comment_id, *args, **kwargs):
             comment.approved = False
             comment.save()
             messages.add_message(request, messages.SUCCESS, 'Comment Updated!')
-            # 2
             return redirect('blog')
         else:
             messages.add_message(request, messages.ERROR,
                                  'Error updating comment!')
     else:
-        # 3
         comment_form = CommentForm(instance=comment)
 
     return render(request, 'edit_comment.html', {'comment_form': comment_form})
