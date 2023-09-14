@@ -30,17 +30,16 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 
-# ALLOWED_HOSTS = ['sport-bike-blog-416f164a9499.herokuapp.com', 'localhost']
 
 ALLOWED_HOSTS = [
-    '8000-lukagajic2-sport-bike-bl-y8hp7w4qhy.us2.codeanyapp.com', 'localhost', 'sport-bike-blog-416f164a9499.herokuapp.com']
+    'sport-bike-blog-416f164a9499.herokuapp.com', 'localhost']
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://8000-lukagajic2-sport-bike-bl-y8hp7w4qhy.us2.codeanyapp.com',]
+    'https://sport-bike-blog-416f164a9499.herokuapp.com']
 
 
 # Application definition
