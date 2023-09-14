@@ -5,8 +5,8 @@ from django.contrib import messages
 from .models import BlogPost, BlogComment
 from .forms import CommentForm
 
-
 # about.html page view
+
 
 def about_page(request):
     """
@@ -14,8 +14,8 @@ def about_page(request):
     """
     return render(request, "about.html")
 
-
 # Class used from "I think therefore I blog" walkthrough.
+
 
 class BlogPage(generic.ListView):
     """
@@ -26,8 +26,8 @@ class BlogPage(generic.ListView):
     template_name = 'blog.html'
     paginate_by = 6
 
-
 # view used from PP4_masterclass blog
+
 
 def blog_post_page(request, slug, *args, **kwargs):
     """
@@ -78,8 +78,8 @@ def blog_post_page(request, slug, *args, **kwargs):
         },
     )
 
-
 # view used from PP4_masterclass blog
+
 
 def blog_post_like(request, slug, *args, **kwargs):
     """
@@ -97,16 +97,16 @@ def blog_post_like(request, slug, *args, **kwargs):
 
     return HttpResponseRedirect(reverse('post', args=[slug]))
 
-
 # delete comment view
+
 
 def delete_comment(request, slug, comment_id, *args, **kwargs):
     comment = get_object_or_404(BlogComment, id=comment_id)
     comment.delete()
     return HttpResponseRedirect(reverse('post', kwargs={"slug": slug}))
 
-
 # edit view comment
+
 
 def edit_comment(request, comment_id, *args, **kwargs):
     comment = get_object_or_404(BlogComment, id=comment_id)

@@ -36,10 +36,12 @@ X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 
 ALLOWED_HOSTS = [
-    'sport-bike-blog-416f164a9499.herokuapp.com', 'localhost']
+    'sport-bike-blog-416f164a9499.herokuapp.com', 'localhost',
+    '8000-lukagajic2-sport-bike-bl-y8hp7w4qhy.us2.codeanyapp.com']
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://sport-bike-blog-416f164a9499.herokuapp.com']
+    'https://sport-bike-blog-416f164a9499.herokuapp.com',
+    'https://8000-lukagajic2-sport-bike-bl-y8hp7w4qhy.us2.codeanyapp.com']
 
 
 # Application definition
