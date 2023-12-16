@@ -1,5 +1,9 @@
 # SPORT BIKE BLOG
 
+![Site view across devices](static/amiresponsive.png)
+
+The live link for "Sport Bike Blog" can be found [HERE](https://sport-bike-blog-416f164a9499.herokuapp.com/)
+
 ## Table of Contents
 
 ## Technologies Used
@@ -8,8 +12,10 @@
 
 -HTML5
 -CSS3
+-JavaScript
 -Python
 -Django
+-SQL Postgres
 
 ### Libraries, Frameworks and Programs:
 
@@ -17,7 +23,9 @@
 -GitHub - to store my repository.
 -Django
 -Bootstrap
+-Google Fonts - font families.
 -Font Awesome - to add icons to the social links in the footer element.
+-Favicon
 -Am I Responsive? - to ensure the project looked good across all devices.
 
 ### Installed Packages
@@ -64,3 +72,11 @@ Sport Bike Blog site was deployed to Heroku following next steps:
 - pushed the project to Github
 - connected my github account to Heroku through the Deploy tab
 - connected my github project repository, and then clicked on the "Deploy" button
+
+## Credits
+
+-[Lauren-Nicole Popich](https://github.com/CluelessBiker): a MENTOR!
+-Tutor Support
+-"I think therefore I blog", "Hello Django"
+-[Start Bootstrap](<https://startbootstrap.com/theme/clean-blog>): base for blog site
+-Slack, Stackoverflow
