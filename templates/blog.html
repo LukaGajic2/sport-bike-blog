@@ -28,9 +28,14 @@
           <img
             class="card-img-top"
             src="https://codeinstitute.s3.amazonaws.com/fullstack/blog/default.jpg"
+            alt="daughters kiss"
           />
           {% else %}
-          <img class="card-img-top" src=" {{ post.featured_image.url }}" />
+          <img
+            class="card-img-top"
+            src=" {{ post.featured_image.url }}"
+            alt="bike image"
+          />
           {% endif %}
           <div class="image-flash">
             <p class="author">Written by {{ post.author }}</p>

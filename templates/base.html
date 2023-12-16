@@ -89,16 +89,25 @@
     </nav>
     <!-- MESSAGES: Used from "I think therefore I blog" -->
     <div class="container">
-        <div class="row">
-            <div class="col-md-8 offset-md-2">
-                {% for message in messages %}
-                <div class="alert {{ message.tags }} alert-dismissible fade show" id="msg" role="alert">
-                    {{ message | safe }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-                {% endfor %}
-            </div>
+      <div class="row">
+        <div class="col-md-8 offset-md-2">
+          {% for message in messages %}
+          <div
+            class="alert {{ message.tags }} alert-dismissible fade show"
+            id="msg"
+            role="alert"
+          >
+            {{ message | safe }}
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="alert"
+              aria-label="Close"
+            ></button>
+          </div>
+          {% endfor %}
         </div>
+      </div>
     </div>
 
     {% block content %} {% endblock %}
@@ -110,8 +119,12 @@
           <div class="col-md-10 col-lg-8 col-xl-7">
             <ul class="list-inline text-center">
               <li class="list-inline-item">
-                <a href="https://twitter.com" target="_blank" rel="noopener"
-                            aria-label="Visit our Twitter page (opens in a new tab)">
+                <a
+                  href="https://twitter.com"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="Visit our Twitter page (opens in a new tab)"
+                >
                   <span class="fa-stack fa-lg">
                     <i class="fas fa-circle fa-stack-2x"></i>
                     <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
@@ -119,8 +132,12 @@
                 </a>
               </li>
               <li class="list-inline-item">
-                <a href="https://facebook.com" target="_blank" rel="noopener"
-                            aria-label="Visit our Facebook page (opens in a new tab)">
+                <a
+                  href="https://facebook.com"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="Visit our Facebook page (opens in a new tab)"
+                >
                   <span class="fa-stack fa-lg">
                     <i class="fas fa-circle fa-stack-2x"></i>
                     <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
@@ -128,8 +145,12 @@
                 </a>
               </li>
               <li class="list-inline-item">
-                <a href="https://github.com/LukaGajic2" target="_blank" rel="noopener"
-                            aria-label="Visit my Github page (opens in a new tab)">
+                <a
+                  href="https://github.com/LukaGajic2"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="Visit my Github page (opens in a new tab)"
+                >
                   <span class="fa-stack fa-lg">
                     <i class="fas fa-circle fa-stack-2x"></i>
                     <i class="fab fa-github fa-stack-1x fa-inverse"></i>
@@ -138,7 +159,7 @@
               </li>
             </ul>
             <div class="small text-center text-muted fst-italic">
-            Project created for educational purposes only.
+              Project created for educational purposes only.
             </div>
           </div>
         </div>
@@ -146,11 +167,11 @@
     </footer>
     <!-- Taken from "I think therefore I blog" -->
     <script>
-        setTimeout(function () {
-            let messages = document.getElementById('msg');
-            let alert = new bootstrap.Alert(messages);
-            alert.close();
-        }, 2500);
+      setTimeout(function () {
+          let messages = document.getElementById('msg');
+          let alert = new bootstrap.Alert(messages);
+          alert.close();
+      }, 2500);
     </script>
   </body>
 </html>
