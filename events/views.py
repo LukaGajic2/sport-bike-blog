@@ -7,9 +7,7 @@ from .forms import CommentForm
 
 
 class EventsPage(generic.ListView):
-    """
-    View for blog page.
-    """
+
     model = EventPost
     queryset = EventPost.objects.filter(status=1).order_by('-created_on')
     template_name = 'events.html'
@@ -19,13 +17,13 @@ class EventsPage(generic.ListView):
 def event_post_page(request, slug, *args, **kwargs):
 
     queryset = EventPost.objects.filter(status=1)
-    event = get_object_or_404(queryset, slug=slug)
-    event_comments = event.comments.filter(approved=True).order_by("-created_on")
-    event_comment_count = event.comments.filter(approved=True).count()
+    post = get_object_or_404(queryset, slug=slug)
+    comments = post.comments.filter(approved=True).order_by("-created_on")
+    comment_count = post.comments.filter(approved=True).count()
     liked = False
     commented = False
 
-    if event.likes.filter(id=request.user.id).exists():
+    if post.likes.filter(id=request.user.id).exists():
         liked = True
 
     if request.method == "POST":
@@ -47,39 +45,42 @@ def event_post_page(request, slug, *args, **kwargs):
         request,
         "events.html",
         {
-            "event": event,
-            "comments": event_comments,
-            "comment_count": event_comment_count,
+            "post": post,
+            "comments": comments,
+            "comment_count": comment_count,
             "liked": liked,
             "comment_form": comment_form
         },
     )
 
+# view used from PP4_masterclass blog
+
 
 def event_post_like(request, slug, *args, **kwargs):
-    event = get_object_or_404(EventPost, slug=slug)
+
+    post = get_object_or_404(EventPost, slug=slug)
 
     if request.method == "POST" and request.user.is_authenticated:
-        if event.likes.filter(id=request.user.id).exists():
-            event.likes.remove(request.user)
+        if post.likes.filter(id=request.user.id).exists():
+            post.likes.remove(request.user)
         else:
-            event.likes.add(request.user)
+            post.likes.add(request.user)
 
-    return HttpResponseRedirect(reverse('event', args=[slug]))
+    return HttpResponseRedirect(reverse('events', args=[slug]))
 
 # delete comment view
 
 
-def delete_comment(request, slug, comment_id, *args, **kwargs):
-    event_comment = get_object_or_404(EventComment, id=comment_id)
-    event_comment.delete()
-    return HttpResponseRedirect(reverse('event', kwargs={"slug": slug}))
+def delete_comment_event(request, slug, comment_id, *args, **kwargs):
+    comment = get_object_or_404(EventComment, id=comment_id)
+    comment.delete()
+    return HttpResponseRedirect(reverse('events', kwargs={"slug": slug}))
 
 # edit view comment
 
 
-def edit_comment(request, comment_id, *args, **kwargs):
-    event_comment = get_object_or_404(EventComment, id=comment_id)
+def edit_comment_event(request, comment_id, *args, **kwargs):
+    comment = get_object_or_404(BlogComment, id=comment_id)
 
     if request.method == 'POST':
         comment_form = CommentForm(data=request.POST, instance=comment)
@@ -88,11 +89,11 @@ def edit_comment(request, comment_id, *args, **kwargs):
             comment.approved = False
             comment.save()
             messages.add_message(request, messages.SUCCESS, 'Comment Updated!')
-            return redirect('event')
+            return redirect('events')
         else:
             messages.add_message(request, messages.ERROR,
                                  'Error updating comment!')
     else:
         comment_form = CommentForm(instance=comment)
 
-    return render(request, 'edit_event_comment.html', {'comment_form': comment_form})
+    return render(request, 'edit_comment.html', {'comment_form': comment_form})
