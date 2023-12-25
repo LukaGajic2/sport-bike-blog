@@ -3,7 +3,7 @@
 <!-- Page Header-->
 <header
   class="masthead"
-  style="background-image: url('{% static 'assets/img/triumph.jpg' %}')"
+  style="background-image: url('{% static 'assets/img/event.jpeg' %}')"
 >
   <div class="container position-relative px-4 px-lg-5">
     <div class="row gx-4 gx-lg-5 justify-content-center">
@@ -40,7 +40,7 @@
             <p class="author">{{ post.location }}</p>
           </div>
         </div>
-        <a href="{% url 'post' post.slug  %}" class="post-link">
+        <a href="{% url 'event_post' post.slug %}" class="post-link">
           <h2 class="post-title">{{ post.title }}</h2>
         </a>
 

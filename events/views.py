@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.views import generic, View
 from django.http import HttpResponseRedirect
 from django.contrib import messages
@@ -43,7 +43,7 @@ def event_post_page(request, slug, *args, **kwargs):
 
     return render(
         request,
-        "events.html",
+        "eventpost.html",
         {
             "post": post,
             "comments": comments,
