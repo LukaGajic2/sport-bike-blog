@@ -110,11 +110,14 @@
         <!-- Our for loop ends here -->
         <div>
           {% if user.is_authenticated and comment.name == user.username %}
-          <form action="{% url 'delete' post.slug comment.id %}" method="POST">
+          <form
+            action="{% url 'delete_comment' post.slug comment.id %}"
+            method="POST"
+          >
             {% csrf_token %}
-            <input type="submit" value="Delete" class="btn" />
+            <input type="submit" value="Delete" class="btn btn-edit" />
           </form>
-          <a href="{% url 'edit' comment.id %}" class="post-link">
+          <a href="{% url 'edit_comment' comment.id %}" class="post-link">
             <button class="btn btn-edit">Edit</button>
           </a>
           {% endif %}

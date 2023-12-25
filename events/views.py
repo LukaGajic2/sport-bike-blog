@@ -66,7 +66,7 @@ def event_post_like(request, slug, *args, **kwargs):
         else:
             post.likes.add(request.user)
 
-    return HttpResponseRedirect(reverse('events', args=[slug]))
+    return HttpResponseRedirect(reverse('event_post', args=[slug]))
 
 # delete comment view
 
@@ -74,13 +74,13 @@ def event_post_like(request, slug, *args, **kwargs):
 def delete_comment_event(request, slug, comment_id, *args, **kwargs):
     comment = get_object_or_404(EventComment, id=comment_id)
     comment.delete()
-    return HttpResponseRedirect(reverse('events', kwargs={"slug": slug}))
+    return HttpResponseRedirect(reverse('event_post', kwargs={"slug": slug}))
 
 # edit view comment
 
 
 def edit_comment_event(request, comment_id, *args, **kwargs):
-    comment = get_object_or_404(BlogComment, id=comment_id)
+    comment = get_object_or_404(EventComment, id=comment_id)
 
     if request.method == 'POST':
         comment_form = CommentForm(data=request.POST, instance=comment)
