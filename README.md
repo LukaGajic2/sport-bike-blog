@@ -1,6 +1,6 @@
 # SPORT BIKE BLOG
 
-"Sport Bike Blog" is ...
+"Sport Bike Blog is your ultimate destination for the latest news, reviews, and insights into the exhilarating world of sport bikes. Whether you're a seasoned rider or a passionate enthusiast, our blog covers everything from cutting-edge motorcycle technology and performance reviews to thrilling ride experiences and must-have gear. Join us as we explore the fast-paced and dynamic realm of sport bikes, sharing tips, trends, and stories that ignite the passion for two-wheeled adrenaline."
 
 ![Site view across devices](static/img-readme/amiresponsivepp4.png)
 
@@ -9,7 +9,11 @@ The live link for "Sport Bike Blog" can be found [HERE](https://sport-bike-blog-
 ## Table of Contents
 + [User Stories](#user-stories)
 + [Design](#design)
+  + [Wireframes](#wireframes)
+  + [Database Scheme](#database-scheme)
+  + [Color Scheme](#color-palette)
 + [Features](#features)
+  + [CRUD](#crud)
 + [Testing](#testing)
 + [Technologies used](#technologies-used)
   + [Main Languages Used](#main-languages-used)
@@ -22,12 +26,39 @@ The live link for "Sport Bike Blog" can be found [HERE](https://sport-bike-blog-
 
 ## Design
 
+### Wireframes
+
+### Database Scheme
+
+### Color Palette
+![Color Palette](static/img-readme/colorpalette.png)
+
 ## Features
+
 #### About Page
-![About Page](static/img-readme/about.png)
+![About Page](static/img-readme/aboutpage.png)
 
 #### Blog Page
 ![Blog Page](static/img-readme/blogpage.png)
+
+#### Events Page
+![Events Page](static/img-readme/eventspage.png)
+
+#### Log In, Sign In Page
+![Log In Page](static/img-readme/loginpage.png)
+
+### CRUD
+
+CRUD function is avaliable in comments sections for registered and inlogged users.
+
+All users can read blog and events posts and comments beneath them and see number of likes.
+
+![Comments page section](static/img-readme/commentspage.png)
+
+Only registered and inlogged users can EDIT and DELETE their comments only and LIKE or UNLIKE posts.
+
+![Edit Page](static/img-readme/editpage2.png)
+
 
 ## Testing
 - .html files pass through the [W3C validator](https://validator.w3.org) with no issues
@@ -114,4 +145,7 @@ Sport Bike Blog site was deployed to Heroku following next steps:
 - Tutor Support
 - "I think therefore I blog", "Hello Django"
 - [Start Bootstrap](<https://startbootstrap.com/theme/clean-blog>) base for blog site
-- Slack, Stackoverflow
+- Slack
+
++ [Stackoverflow](https://stackoverflow.com/questions/66185424/django-how-do-i-handle-urls-with-multiple-apps) - how to connect URL paths from multiple apps
+- Sean from Tutor Support with help and explaining how to make EDIT and DELETE buttons work
