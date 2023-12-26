@@ -1,11 +1,11 @@
 {% extends "base.html" %} {% load i18n %} {% load account socialaccount %}
 <!--{% block head_title %}{% trans "Sign In" %}{% endblock %} -->
-{% block content %}
+{% block content %} {% load static %}
 
 <!-- Page Header-->
 <header
   class="masthead"
-  style="background-image: url('assets/img/contact-bg.jpg')"
+  style="background-image: url('{% static 'assets/img/wheelie2.png' %}')"
 >
   <div class="container position-relative px-4 px-lg-5">
     <div class="row gx-4 gx-lg-5 justify-content-center">
