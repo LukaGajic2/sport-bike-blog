@@ -24,27 +24,69 @@ The live link for "Sport Bike Blog" can be found [HERE](https://sport-bike-blog-
 
 ## User Stories
 
+On this site, beside Admin, Site Visitors can sign up, log in and become Site Users.
+
+### Admin Stories
+
+1. As an Admin I can create posts so that I can manage my app posts.
+
+2. As an Admin I can moderate blog comments so that the feedback provided is appropriate.
+
+### User Stories
+
+1. As a Site User I can register account so that I can comment on posts
+
+2. As a Site User I can open posts so that I can read full post text.
+
+3. As a Site User I can read comments so that I can get additional information.
+
+4. As a Site User I can write comments so that I can give my feedback on post.
+
+5. As a Site User I can update comments so that I can get additional information.
+
+6. As a Site User I can delete comments.
+
+7. As a Site User I can like/unlike posts so that I can share my opinion on a post.
+
+### Visitor Stories
+
+1. As a Site Visitor I can open posts so that I can read full post text.
+
+2. As a Site Visitor I can read comments so that I can get additional information.
+
+
 ## Design
 
 ### Wireframes
 
+#### Site Navigation
+
+![Site Navigation](static/img-readme/sitenav.png)
+
 ### Database Scheme
 
+![Database Scheme](static/img-readme/database.png)
+
 ### Color Palette
+
 ![Color Palette](static/img-readme/colorpalette.png)
 
 ## Features
 
 #### About Page
+
 ![About Page](static/img-readme/aboutpage.png)
 
 #### Blog Page
+
 ![Blog Page](static/img-readme/blogpage.png)
 
 #### Events Page
+
 ![Events Page](static/img-readme/eventspage.png)
 
 #### Log In, Sign In Page
+
 ![Log In Page](static/img-readme/loginpage.png)
 
 ### CRUD
@@ -61,6 +103,7 @@ Only registered and inlogged users can EDIT and DELETE their comments only and L
 
 
 ## Testing
+
 - .html files pass through the [W3C validator](https://validator.w3.org) with no issues
   
 - CSS files pass through the [Jigsaw validator](https://jigsaw.w3.org/css-validator/)
@@ -75,7 +118,9 @@ Only registered and inlogged users can EDIT and DELETE their comments only and L
 
 
 ## Technologies Used
+
 ### Main Languages Used
+
 - HTML5
 - CSS3
 - JavaScript
@@ -93,6 +138,7 @@ Only registered and inlogged users can EDIT and DELETE their comments only and L
 - Font Awesome - to add icons to the social links in the footer element.
 - Favicon
 - Am I Responsive? - to ensure the project looked good across all devices.
+- LucidChart
 
 ### Installed Packages
 
@@ -104,6 +150,7 @@ Only registered and inlogged users can EDIT and DELETE their comments only and L
 - django-crispy-forms[(link)](https://django-crispy-forms.readthedocs.io/en/latest/index.html)
 
 ## Deployment
+
 Sport Bike Blog site was deployed to Heroku following next steps:
 
 - Install Django & Gunicorn:
