@@ -59,20 +59,21 @@ On this site, beside Admin, Site Visitors can sign up, log in and become Site Us
 
 ### Wireframes
 
-Home page
+- Home page
 ![About Page](static/img-readme/wf-about.png)
 
-Blog Page
+- Blog Page
 ![Blog Page](static/img-readme/wf-blog.png)
 
-Events Page
+- Events Page
 ![Events Page](static/img-readme/wf-events.png)
 
-Post Page
+- Post Page
 ![Post Page](static/img-readme/wf-post.png)
 
-Sign In/Log In Page
+- Sign In/Log In Page
 ![SignIn Page](static/img-readme/wf-signin.png)
+
 #### Site Navigation
 
 ![Site Navigation](static/img-readme/sitenav.png)
